@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form th:action="@{/sucursal/save}" method="post" th:object=${sucursal}>
+					<div class="mb-3 form-group">
+						<input type="hidden" th:field="*{pk_SucursalID}">
+						<label for="nomSucursal" class="form-label col-md-2">Nombre
+							de sucursal </label> 
+						<input type="text" th:field="*{nomSucursal}"
+						class="form-control form-control-sm col-md-6" id="nomSucursal"
+						placeholder="Nombre de la sucursal"> 
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nomSucursal')}" th:errors="*{nomSucursal}"></small>
+					</div>
+					<div class="mb-3 form-group">
+						<label for="paisSucursal" class="form-label col-md-2">País
+						</label> 
+						<input type="text" th:field="*{paisSucursal}" class="form-control form-control-sm col-md-6"
+							id="paisSucursal" placeholder="País Sucursal"> 
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('paisSucursal')}" th:errors="*{paisSucursal}"></small>
+					</div>
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
